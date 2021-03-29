@@ -28,19 +28,27 @@ new Vue({
         .catch(e => console.log(e));       
       },
       removeTodo(id) {
-        this.todos = this.todos.filter(t => t.id !== id)
+        this.todos = this.todos.filter(t => t.id !== id);
       }
     },
     filters: {
       capitalize(value) {
-        return value.toString().charAt(0).toUpperCase() + value.slice(1)
+        return value.toString().charAt(0).toUpperCase() + value.slice(1);
       },
-      date(value) {
-        return new Intl.DateTimeFormat('ru-RU', {
+      date(value, withTime) {
+        const options = {
           year: 'numeric',
           month: 'long',
           day: '2-digit'
-        }).format(new Date(value))
+        };
+
+        if (withTime) {
+          options.hour = '2-digit',
+          options.minute = '2-digit',
+          options.second = '2-digit'
+        };
+
+        return new Intl.DateTimeFormat('ru-RU', options).format(new Date(value));
       }
     }
   })
