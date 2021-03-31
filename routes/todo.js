@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
 // change task
 router.put('/:id', (req, res) => {
     try {
-        
+        const todo = await Todo.findByPk(req.body.id);
     } catch (error) {
         console.log(error);
         res.status(500).json({
