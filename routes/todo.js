@@ -51,7 +51,14 @@ router.put('/:id', async (req, res) => {
 // remove task
 router.delete('/:id', (req, res) => {
     try {
-        
+        const todos = await Todo.findAll({
+            where: {
+                id: +req.params.id
+            }
+        });
+        const todo = todos[0];
+        await todo.destroy();
+        res.status(204).json({});
     } catch (error) {
         console.log(error);
         res.status(500).json({
