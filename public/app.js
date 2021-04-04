@@ -47,7 +47,7 @@ new Vue({
           .catch(e => console.log(e));        
       },
       completeTodo(id) {
-        fetch('/api/todo' + id, {
+        fetch('/api/todo/' + id, {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({done: true}),

@@ -3,7 +3,7 @@ const Todo = require('../models/todo');
 const router = Router();
 
 // get list of tasks
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const todos = await Todo.findAll();
         res.status(200).json(todos);
@@ -49,7 +49,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // remove task
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const todos = await Todo.findAll({
             where: {
